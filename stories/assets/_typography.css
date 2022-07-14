@@ -1,0 +1,50 @@
+/**
+ * Do not edit directly
+ * Generated on Mon, 11 Jul 2022 14:21:06 GMT
+ */
+
+:root {
+  /**
+  * @tokens Font Families
+  * @presenter FontFamily
+  */
+  --token-font-family-01: Open Sans;
+
+  /**
+  * @tokens Font Weights
+  * @presenter FontWeight
+  */
+  --token-font-weight-bold: 700;
+  --token-font-weight-medium: 500;
+  --token-font-weight-regular: 400;
+  --token-font-weight-semibold: 600;
+  --token-font-weight-light: 300;
+
+  /**
+  * @tokens Font Sizes
+  * @presenter FontSize
+  */
+  --token-font-size-md: 0.875rem;
+  --token-font-size-sm: 0.75rem;
+  --token-font-size-lg: 1rem;
+  --token-font-size-xl: 1.125rem;
+  --token-font-size-xs: 0.6875rem;
+  --token-font-size-2xl: 1.25rem;
+  --token-font-size-3xl: 1.375rem;
+  --token-font-size-giant: 1.75rem;
+  --token-font-size-xg: 2.125rem;
+  --token-font-size-s1: 0.75rem;
+  --token-font-size-s2: 0.75rem;
+
+  /**
+  * @tokens Line Heights
+  * @presenter LineHeight
+  */
+  --token-line-height-1: 1rem;
+  --token-line-height-2: 1.25rem;
+  --token-line-height-3: 1.5rem;
+  --token-line-height-4: 1.75rem;
+  --token-line-height-5: 2rem;
+  --token-line-height-6: 2.25rem;
+  --token-line-height-7: 2.75rem;
+}
