@@ -4,6 +4,7 @@ import './assets/_typography.css'
 
 export const StyledButton = styled.button`
   border: 0;
+  color: var(--w-color-neutral-neu-01);
   background-color: var(--w-color-brandcolor-primary);
 `
 

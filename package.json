@@ -2,11 +2,19 @@
   "name": "sb-design-tokens",
   "version": "0.0.1",
   "description": "Storybook addon to extract component tokens",
-  "main": "dist/preset.js",
+  "author": "Everton Denis",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evertondenis/sb-design-tokens"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "files": [
     "dist/**/*",
     "README.md",
-    "*.js"
+    "*.js",
+    "*.d.ts"
   ],
   "keywords": [
     "storybook",
@@ -14,12 +22,24 @@
     "tokens",
     "desing-system"
   ],
-  "author": "Everton Denis",
-  "license": "MIT",
   "scripts": {
-    "build": "babel ./src --out-dir ./dist",
+    "clean": "rimraf ./dist",
+    "buildBabel": "concurrently \"yarn buildBabel:cjs\" \"yarn buildBabel:esm\"",
+    "buildBabel:cjs": "babel ./src -d ./dist/cjs --extensions \".js,.jsx,.ts,.tsx\"",
+    "buildBabel:esm": "babel ./src -d ./dist/esm --env-name esm --extensions \".js,.jsx,.ts,.tsx\"",
+    "prebuild": "yarn clean",
+    "build": "concurrently \"yarn buildBabel\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
+  },
+  "peerDependencies": {
+    "@storybook/addons": "^6.4.0 || ^6.5.0 || ^6.5.0-alpha",
+    "@storybook/api": "^6.4.0 || ^6.5.0 || ^6.5.0-alpha",
+    "@storybook/components": "^6.4.0 || ^6.5.0 || ^6.5.0-alpha",
+    "@storybook/core-events": "^6.4.0 || ^6.5.0 || ^6.5.0-alpha",
+    "@storybook/theming": "^6.4.0 || ^6.5.0 || ^6.5.0-alpha",
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
     "@babel/cli": "^7.18.6",
@@ -28,7 +48,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
-    "@bissolli/storybook-css-properties": "^0.0.14",
+    "@babel/preset-env": "^7.18.6",
+    "@babel/preset-react": "^7.18.6",
     "@storybook/addon-actions": "^6.5.9",
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-interactions": "^6.5.9",
@@ -38,6 +59,8 @@
     "@storybook/react": "^6.5.9",
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.2.5",
+    "concurrently": "^7.2.2",
+    "rimraf": "^3.0.2",
     "styled-components": "^5.3.5"
   }
 }
