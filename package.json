@@ -8,13 +8,11 @@
     "type": "git",
     "url": "https://github.com/evertondenis/sb-design-tokens"
   },
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/preset.js",
   "files": [
     "dist/**/*",
     "README.md",
-    "*.js",
-    "*.d.ts"
+    "*.js"
   ],
   "keywords": [
     "storybook",
@@ -24,22 +22,10 @@
   ],
   "scripts": {
     "clean": "rimraf ./dist",
-    "buildBabel": "concurrently \"yarn buildBabel:cjs\" \"yarn buildBabel:esm\"",
-    "buildBabel:cjs": "babel ./src -d ./dist/cjs --extensions \".js,.jsx,.ts,.tsx\"",
-    "buildBabel:esm": "babel ./src -d ./dist/esm --env-name esm --extensions \".js,.jsx,.ts,.tsx\"",
     "prebuild": "yarn clean",
-    "build": "concurrently \"yarn buildBabel\"",
+    "build": "babel ./src --out-dir ./dist",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
-  },
-  "peerDependencies": {
-    "@storybook/addons": "^6.4.0 || ^6.5.0 || ^6.5.0-alpha",
-    "@storybook/api": "^6.4.0 || ^6.5.0 || ^6.5.0-alpha",
-    "@storybook/components": "^6.4.0 || ^6.5.0 || ^6.5.0-alpha",
-    "@storybook/core-events": "^6.4.0 || ^6.5.0 || ^6.5.0-alpha",
-    "@storybook/theming": "^6.4.0 || ^6.5.0 || ^6.5.0-alpha",
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
     "@babel/cli": "^7.18.6",

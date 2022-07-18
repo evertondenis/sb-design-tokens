@@ -1,11 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { useParameter } from '@storybook/api';
 import { addons, types } from '@storybook/addons';
 import { AddonPanel, ScrollArea } from '@storybook/components';
 import { styled } from '@storybook/theming';
 
-import useReactPath from './useReactPath';
 import { useLocation } from './use-location';
 
 import { getAllCSSVariables } from "./get-all-css-variables";
@@ -26,9 +24,7 @@ const setIframePreviewWhenReady = (setIframePreview) => {
 
 const getTokenValue = (tokens, token) => {
   const value = tokens.find((o, i) => {
-    // console.log(o);
       if (o.key === token) {
-          // console.log('value: ', o.value)
           return true;
       }
   });
@@ -44,6 +40,7 @@ const BoxColor = ({ color }) => {
         height: 20,
         width: 20,
         marginRight: 5,
+        border: '1px solid #eeeeee'
       })),
     [color]
   );
@@ -195,37 +192,39 @@ const MyPanel = () => {
   return (
     <ScrollArea vertical horizontal>
       {loading && <p>Loading tokens...</p>}
-      <Table>
-        <thead >
-          <tr>
-            <th>Property</th>
-            <th>Token</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tokens && tokens.map((tk, index) => (
-            <tr key={index} >
-              <td>
-                <span>
-                  {tk.property}
-                </span>
-              </td>
-              <td>
-                <span>
-                  {tk.token}
-                </span>
-              </td>
-              <td>
-                <span>
-                  {tk.type === 'color' && <BoxColor color={tk.value}/>}
-                  {tk.value}
-                </span>
-              </td>
+      {tokens &&
+        <Table>
+          <thead >
+            <tr>
+              <th>Property</th>
+              <th>Token</th>
+              <th>Value</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {tokens.map((tk, index) => (
+              <tr key={index} >
+                <td>
+                  <span>
+                    {tk.property}
+                  </span>
+                </td>
+                <td>
+                  <span>
+                    {tk.token}
+                  </span>
+                </td>
+                <td>
+                  <span>
+                    {tk.type === 'color' && <BoxColor color={tk.value}/>}
+                    {tk.value}
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      }
     </ScrollArea>
   );
 };

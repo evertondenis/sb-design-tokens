@@ -1,0 +1,33 @@
+/**
+ * Do not edit directly
+ * Generated on Mon, 11 Jul 2022 14:21:06 GMT
+ */
+
+:root {
+  --token-space-stack-m: 2rem;
+  --token-space-stack-md: 2rem;
+  --token-space-stack-small: 1.5rem;
+  --token-space-stack-sm: 1.5rem;
+  --token-space-stack-xs: 1rem;
+  --token-space-stack-xxs: 0.5rem;
+  --token-space-stack-large: 2.5rem;
+  --token-space-stack-lg: 2.5rem;
+  --token-space-stack-xl: 48px;
+  --token-space-stack-xxl: 3.5rem;
+  --token-space-stack-giant: 4rem;
+  --token-space-stack-xg: 4.5rem;
+  --token-space-stack-xxg: 5rem;
+  --token-space-inset-md: 2rem;
+  --token-space-inset-lg: 2.5rem;
+  --token-space-inset-sm: 1.5rem;
+  --token-space-inset-xs: 1rem;
+  --token-space-inset-xxs: 0.5rem;
+  --token-space-squish-lg: 1rem 2rem;
+  --token-space-squish-md: 0.5rem 1rem;
+  --token-space-squish-sm: 0.25rem 0.5rem;
+  --token-space-inline-md: 1rem;
+  --token-space-inline-lg: 2rem;
+  --token-space-inline-xl: 4rem;
+  --token-space-inline-sm: 0.5rem;
+  --token-space-inline-xs: 0.25rem;
+}

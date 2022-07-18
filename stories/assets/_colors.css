@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 06 Jul 2022 16:29:09 GMT
+ * Generated on Mon, 11 Jul 2022 14:21:06 GMT
  */
 
 :root {
@@ -8,49 +8,74 @@
   * @tokens Colors
   * @presenter Color
   */
-  --w-color-neutral-darkest: #141414;
-  --w-color-neutral-dark: #383838;
-  --w-color-neutral-medium: #9e9e9e;
-  --w-color-neutral-lightest: #ffffff;
-  --w-color-neutral-light: #ededed;
-  --w-color-neutral-neu-01: #ffffff;
-  --w-color-neutral-neu-02: #f6f6f6;
-  --w-color-neutral-neu-03: #ededed;
-  --w-color-neutral-neu-04: #dddddd;
-  --w-color-neutral-neu-05: #cccccc;
-  --w-color-neutral-neu-06: #9e9e9e;
-  --w-color-neutral-neu-07: #777777;
-  --w-color-neutral-neu-08: #4c4c4c;
-  --w-color-neutral-neu-09: #383838;
-  --w-color-neutral-neu-10: #212121;
-  --w-color-neutral-neu-11: #141414;
-  --w-color-additional-add-01: #ffcc33;
-  --w-color-additional-add-02: #1c54b4;
-  --w-color-additional-add-03: #dde2e7;
-  --w-color-additional-add-04: #ff2d81;
-  --w-color-additional-add-05: #fe712c;
-  --w-color-additional-add-06: #40bf64;
-  --w-color-additional-add-07: #217d55;
-  --w-color-additional-add-08: #9fdc83;
-  --w-color-additional-add-09: #25ab52;
-  --w-color-additional-add-10: #3bb7ea;
-  --w-color-additional-add-11: #0b6387;
-  --w-color-additional-add-12: #f79d5e;
-  --w-color-additional-add-13: #ea6852;
-  --w-color-extended-primary-dark: #cc1611;
-  --w-color-extended-primary-light: #fe382c;
-  --w-color-extended-m-01-light-01: #fe382c;
-  --w-color-extended-m-01-dark-01: #cc1611;
-  --w-color-extended-add-02-light-01: #fafcff;
-  --w-color-extended-add-02-light-02: #dde2e7;
-  --w-color-extended-lightest: #fafcff;
-  --w-color-extended-light: #dde2e7;
-  --w-color-main-m-01: #e51b15;
-  --w-color-brandcolor-primary: #e51b15;
-  --w-color-gradient-01: linear-gradient(114deg, #fe382c 0%, #e51b15 100%);
-  --w-color-gradient-02: linear-gradient(114deg, #ff2d81 0%, #fe382c 100%);
-  --w-color-gradient-03: linear-gradient(114deg, #f6f6f6 0%, #dde2e7 100%);
-  --w-color-gradient-04: linear-gradient(114deg, #9fdc83 0%, #25ab52 100%);
-  --w-color-gradient-05: linear-gradient(114deg, #3bb7ea 0%, #0b6387 100%);
-  --w-color-gradient-06: linear-gradient(114deg, #f79d5e 0%, #ea6852 100%);
+
+  --token-color-neutral-darkest: #141414;
+  --token-color-neutral-dark: #383838;
+  --token-color-neutral-medium: #9e9e9e;
+  --token-color-neutral-lightest: #ffffff;
+  --token-color-neutral-light: #ededed;
+  --token-color-neutral-neu-01: #ffffff;
+  --token-color-neutral-neu-02: #f6f6f6;
+  --token-color-neutral-neu-03: #ededed;
+  --token-color-neutral-neu-04: #dddddd;
+  --token-color-neutral-neu-05: #cccccc;
+  --token-color-neutral-neu-06: #9e9e9e;
+  --token-color-neutral-neu-07: #777777;
+  --token-color-neutral-neu-08: #4c4c4c;
+  --token-color-neutral-neu-09: #383838;
+  --token-color-neutral-neu-10: #212121;
+  --token-color-neutral-neu-11: #141414;
+  --token-color-additional-add-01: #ffcc33;
+  --token-color-additional-add-02: #1c54b4;
+  --token-color-additional-add-03: #dde2e7;
+  --token-color-additional-add-04: #ff2d81;
+  --token-color-additional-add-05: #fe712c;
+  --token-color-additional-add-06: #40bf64;
+  --token-color-additional-add-07: #217d55;
+  --token-color-additional-add-08: #9fdc83;
+  --token-color-additional-add-09: #25ab52;
+  --token-color-additional-add-10: #3bb7ea;
+  --token-color-additional-add-11: #0b6387;
+  --token-color-additional-add-12: #f79d5e;
+  --token-color-additional-add-13: #ea6852;
+  --token-color-extended-primary-dark: #cc1611;
+  --token-color-extended-primary-light: #fe382c;
+  --token-color-extended-m-01-light-01: #fe382c;
+  --token-color-extended-m-01-dark-01: #cc1611;
+  --token-color-extended-add-02-light-01: #fafcff;
+  --token-color-extended-add-02-light-02: #dde2e7;
+  --token-color-extended-lightest: #fafcff;
+  --token-color-extended-light: #dde2e7;
+  --token-color-main-m-01: #e51b15;
+  --token-color-brandcolor-primary: #e51b15;
+  --token-color-gradient-grad-01: linear-gradient(
+    114deg,
+    #fe382c 0%,
+    #e51b15 100%
+  );
+  --token-color-gradient-grad-02: linear-gradient(
+    114deg,
+    #ff2d81 0%,
+    #fe382c 100%
+  );
+  --token-color-gradient-grad-03: linear-gradient(
+    114deg,
+    #f6f6f6 0%,
+    #dde2e7 100%
+  );
+  --token-color-gradient-grad-04: linear-gradient(
+    114deg,
+    #9fdc83 0%,
+    #25ab52 100%
+  );
+  --token-color-gradient-grad-05: linear-gradient(
+    114deg,
+    #3bb7ea 0%,
+    #0b6387 100%
+  );
+  --token-color-gradient-grad-06: linear-gradient(
+    114deg,
+    #f79d5e 0%,
+    #ea6852 100%
+  );
 }
