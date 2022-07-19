@@ -1,9 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
 import { addons, types } from '@storybook/addons';
-import { AddonPanel, ScrollArea } from '@storybook/components';
+import { AddonPanel, Icons, ScrollArea, TooltipNote, WithTooltip } from '@storybook/components';
 import { styled } from '@storybook/theming';
 
+import { ClipboardButton } from './components/ClipboardButton';
+import { ToolButton } from './components/ToolButton';
+import { Input } from './components/Input';
+import { Table } from './components/Table';
 import { useLocation } from './use-location';
 
 import { getAllCSSVariables } from "./get-all-css-variables";
@@ -37,8 +41,8 @@ const BoxColor = ({ color }) => {
       styled.div(() => ({
         background: color,
         borderRadius: 2,
-        height: 20,
-        width: 20,
+        height: 32,
+        width: '100%',
         marginRight: 5,
         border: '1px solid #eeeeee'
       })),
@@ -48,7 +52,7 @@ const BoxColor = ({ color }) => {
   return <Color></Color>;
 };
 
-const MyPanel = () => {
+const Panel = () => {
   const [iframePreview, setIframePreview] = useState(null);
   const [root, setRoot] = useState(null);
   const [currentUrl, setCurrentUrl] = useState(null);
@@ -94,101 +98,13 @@ const MyPanel = () => {
       .reduce((a, v) => {
         const token = v.split(':')[1].match(/\(([^)]+)\)/)[1];
         const {value, type} = getTokenValue(cssVars, token);
-        return [...a, {property: v.split(':')[0], token: v.split(':')[1], value, type}];
+        return [...a, {property: v.split(':')[0], token, value, type}];
     }, []);
 
       setTokens(currenToken);
     }
   }, [currentUrl, root])
 
-  const Table = useMemo(
-    () =>
-      styled.table(({ theme }) => ({
-        borderCollapse: 'collapse',
-        borderSpacing: 0,
-        minWidth: 700,
-        tableLayout: 'fixed',
-        textAlign: 'left',
-        width: '100%',
-
-        'thead > tr': {
-          display: 'flex'
-        },
-
-        'tbody > tr': {
-          borderTop: `1px solid #eeeeee`,
-          display: 'flex',
-
-          ':first-of-type': {
-            borderTopColor: '#aeaeae'
-          },
-
-          ':last-of-type': {
-            borderBottom: '1px solid #aeaeae'
-          }
-        },
-
-        'td, th': {
-          border: 'none',
-          textOverflow: 'ellipsis',
-          verticalAlign: 'middle',
-
-          ':nth-of-type(1)': {
-            flexBasis: '25%',
-            flexGrow: 1,
-            flexShrink: 0
-          },
-
-          ':nth-of-type(2)': {
-            flexBasis: '40%',
-            flexGrow: 0,
-            flexShrink: 0
-          },
-
-          ':nth-of-type(3)': {
-            flexBasis: '35%',
-            flexGrow: 0,
-            flexShrink: 0
-          }
-        },
-
-        th: {
-          paddingBottom: 12,
-          paddingTop: 15,
-          paddingLeft: 5,
-          
-          
-        },
-
-        td: {
-          overflow: 'hidden',
-          paddingBottom: 8,
-          paddingTop: 8,
-          alignItems: 'center',
-
-          ':not(:last-of-type)': {
-            paddingRight: 15
-          },
-
-          svg: {
-            maxWidth: '100%',
-            maxHeight: '100%'
-          },
-
-          span: {
-            alignItems: 'center',
-            display: 'flex',
-            height: '100%',
-            padding: '5px'
-          }
-        }
-      })),
-    []
-  );
-
-  // const value = useParameter(ADDON_ID, null);
-  // const item = value ? value.data : 'No story parameter defined';
-  if (tokens)  console.log(tokens[0].value);
   return (
     <ScrollArea vertical horizontal>
       {loading && <p>Loading tokens...</p>}
@@ -199,6 +115,7 @@ const MyPanel = () => {
               <th>Property</th>
               <th>Token</th>
               <th>Value</th>
+              <th>Preview</th>
             </tr>
           </thead>
           <tbody>
@@ -206,18 +123,34 @@ const MyPanel = () => {
               <tr key={index} >
                 <td>
                   <span>
-                    {tk.property}
+                    <strong>{tk.property}</strong>
                   </span>
                 </td>
                 <td>
                   <span>
-                    {tk.token}
+                  {tk.token}
+                  <WithTooltip
+                    hasChrome={false}
+                    tooltip={<TooltipNote note="Copy token" />}
+                  >
+                    <ClipboardButton
+                      button={<ToolButton><Icons icon="copy" /></ToolButton>}
+                      value={tk.token}
+                      />
+                  </WithTooltip>
+                  </span>
+                </td>
+                <td>
+                  <span>
+                    <Input
+                      readOnly
+                      value={tk.type === 'color' ? tk.value.toUpperCase() : tk.value}
+                    />
                   </span>
                 </td>
                 <td>
                   <span>
                     {tk.type === 'color' && <BoxColor color={tk.value}/>}
-                    {tk.value}
                   </span>
                 </td>
               </tr>
@@ -236,7 +169,7 @@ addons.register(ADDON_ID, (api) => {
     title: 'Tokens',
     render: ({ active, key }) => (
       <AddonPanel active={active} key={key}>
-        <MyPanel />
+        <Panel />
       </AddonPanel>
     ),
   });
