@@ -1,5 +1,5 @@
 {
-  "name": "sb-design-tokens",
+  "name": "@evertondenis/sb-design-tokens",
   "version": "0.0.1",
   "description": "Storybook addon to extract component tokens",
   "author": "Everton Denis",
