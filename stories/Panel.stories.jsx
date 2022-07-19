@@ -4,7 +4,7 @@ import { Panel } from './Panel';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Panel',
+  title: 'Components/Panel',
   component: Panel,
   //👇 Creates specific parameters for the story
   parameters: {

@@ -4,7 +4,7 @@ import { Text } from './Text';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Text',
+  title: 'Components/Text',
   component: Text,
   //👇 Creates specific parameters for the story
   parameters: {
