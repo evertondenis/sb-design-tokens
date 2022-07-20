@@ -9,6 +9,7 @@ import { ClipboardButton } from './components/ClipboardButton';
 import { ToolButton } from './components/ToolButton';
 import { Input } from './components/Input';
 import { Table } from './components/Table';
+import { Empty } from './components/Empty';
 import { useLocation } from './use-location';
 
 import { getAllCSSVariables } from "./get-all-css-variables";
@@ -53,6 +54,15 @@ const BoxColor = ({ color }) => {
   );
 
   return <Color></Color>;
+};
+
+const Loader = ({ children }) => {
+  const Loading = styled.p(() => ({
+    fontSize: '1rem',
+    padding: '0 1rem'
+  }));
+
+  return <Loading>{children}</Loading>;
 };
 
 const Panel = () => {
@@ -120,8 +130,9 @@ const Panel = () => {
 
   return (
     <ScrollArea vertical horizontal>
-      {loading && <p>Loading tokens...</p>}
-      {tokens &&
+      {loading && <Loader>Loading tokens...</Loader>}
+      
+      {tokens && tokens.length ?
         <Table>
           <thead >
             <tr>
@@ -170,7 +181,7 @@ const Panel = () => {
             ))}
           </tbody>
         </Table>
-      }
+      : !loading && <Empty>No tokens are being used in this component!</Empty>}
     </ScrollArea>
   );
 };

@@ -20,5 +20,5 @@ export const StyledText = styled.p`
 export const StyledPanel = styled.div`
   width: 100%;
   height: 100vh;
-  background: var(--token-color-gradient-grad-01);
+  background: 'tomato';
 `

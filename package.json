@@ -1,6 +1,6 @@
 {
   "name": "@evertondenis/sb-design-tokens",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Storybook addon to extract component tokens",
   "author": "Everton Denis",
   "license": "MIT",
