@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { flushSync } from 'react-dom';
 
 import { addons, types } from '@storybook/addons';
 import { AddonPanel, Icons, ScrollArea, TooltipNote, WithTooltip } from '@storybook/components';
@@ -16,14 +17,16 @@ const ADDON_ID = 'myaddon';
 const PANEL_ID = `${ADDON_ID}/panel`;
 
 const setIframePreviewWhenReady = (setIframePreview) => {
-  const iframePreview = document.getElementById('storybook-preview-iframe')
+  const iframePreview = document.getElementById('storybook-preview-iframe');
 
   if (!iframePreview) {
-    setTimeout(() => setIframePreviewWhenReady(setIframePreview), 2000)
-    return
-  }
+    setTimeout(() => setIframePreviewWhenReady(setIframePreview), 1000);
+    return;
+  };
 
-  setIframePreview(iframePreview)
+  flushSync(() => {
+    setIframePreview(iframePreview);
+  });
 }
 
 const getTokenValue = (tokens, token) => {
@@ -54,6 +57,7 @@ const BoxColor = ({ color }) => {
 
 const Panel = () => {
   const [iframePreview, setIframePreview] = useState(null);
+  const [iframe, setIframe] = useState(null);
   const [root, setRoot] = useState(null);
   const [currentUrl, setCurrentUrl] = useState(null);
   const [cssVars, setCssVars] = useState([]);
@@ -64,46 +68,55 @@ const Panel = () => {
   const { local } = useLocation();
   const localRef = local.href;
   
-  setTimeout(() => setIframePreviewWhenReady(setIframePreview), 2000);
+  setTimeout(() => setIframePreviewWhenReady(setIframePreview), 1000);
   
   useEffect(() => {
-    
     if (!iframePreview) return;
 
     const variables = getAllCSSVariables(iframePreview.contentWindow.document);
     const iframe = document.querySelector('iframe#storybook-preview-iframe');
 
     setCurrentUrl(localRef.substring(localRef.indexOf('story/') + 6));
+    setIframe(iframe);
     setRoot(iframe.contentWindow.document.querySelector('#root'));
     setCssVars(variables);
     setLoading(false);
+
   }, [iframePreview, localRef]);
 
   useEffect(() => {
+    setLoading(true);
+    setTokens(null);
+
     if (typeof currentUrl === 'string') {
-      // const compClass = currentUrl.replace(currentUrl.substring(0, currentUrl.indexOf("-")), "storybook");
-      const iframe = document.querySelector('iframe#storybook-preview-iframe');
-      const elemtClass = root.childNodes[0].className.split(" ").pop();
-      const tag = iframe.contentWindow.document.querySelectorAll('[data-styled]');
-      const stl = [...tag].map(div => div.innerHTML);
-      const sani = JSON.stringify(stl);
 
-      const middle = sani.slice(
-        sani.indexOf(elemtClass),
-        sani.lastIndexOf('}') + 1,
-      ).match(/{([^}]+)}/)[1];
+      // TODO Remove this setTimeout.
+      setTimeout(() => { // Is necessary for react 18
+      if (root.childNodes.length) {
+        const elemtClass = root.childNodes[0].className.split(" ").pop();
+        const tag = iframe.contentWindow.document.querySelectorAll('[data-styled]');
+        const stl = [...tag].map(div => div.innerHTML);
+        const sani = JSON.stringify(stl);
 
-      const currenToken = middle.split(";")
-      .filter(s => s.includes('var'))
-      .reduce((a, v) => {
-        const token = v.split(':')[1].match(/\(([^)]+)\)/)[1];
-        const {value, type} = getTokenValue(cssVars, token);
-        return [...a, {property: v.split(':')[0], token, value, type}];
-    }, []);
+        const middle = sani.slice(
+          sani.indexOf(elemtClass),
+          sani.lastIndexOf('}') + 1,
+        ).match(/{([^}]+)}/)[1];
 
-      setTokens(currenToken);
+        const currenToken = middle.split(";")
+        .filter(s => s.includes('var'))
+        .reduce((a, v) => {
+          const token = v.split(':')[1].match(/\(([^)]+)\)/)[1];
+          const {value, type} = getTokenValue(cssVars, token);
+          return [...a, {property: v.split(':')[0], token, value, type}];
+        }, []);
+
+        setTokens(currenToken);
+        setLoading(false);
+      };
+    }, 500);
     }
-  }, [currentUrl, root])
+  }, [currentUrl]);
 
   return (
     <ScrollArea vertical horizontal>
