@@ -5,11 +5,11 @@ import { addons, types } from '@storybook/addons';
 import { AddonPanel, Icons, ScrollArea, TooltipNote, WithTooltip } from '@storybook/components';
 import { styled } from '@storybook/theming';
 
-import { ClipboardButton } from './components/ClipboardButton';
-import { ToolButton } from './components/ToolButton';
-import { Input } from './components/Input';
-import { Table } from './components/Table';
-import { Empty } from './components/Empty';
+import { ClipboardButton, ToolButton, Input, Table, Container } from './components';
+// import { ToolButton } from './components/ToolButton';
+// import { Input } from './components/Input';
+// import { Table } from './components/Table';
+// import { Container } from './components/Container';
 import { useLocation } from './use-location';
 
 import { getAllCSSVariables } from "./get-all-css-variables";
@@ -130,7 +130,7 @@ const Panel = () => {
 
   return (
     <ScrollArea vertical horizontal>
-      {loading && <Loader>Loading tokens...</Loader>}
+      {loading && <Container>Loading tokens...</Container>}
       
       {tokens && tokens.length ?
         <Table>
@@ -181,7 +181,7 @@ const Panel = () => {
             ))}
           </tbody>
         </Table>
-      : !loading && <Empty>No tokens are being used in this component!</Empty>}
+      : !loading && <Container>No tokens are being used in this component!</Container>}
     </ScrollArea>
   );
 };

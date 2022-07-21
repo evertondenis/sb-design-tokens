@@ -1,6 +1,6 @@
 import { styled } from '@storybook/theming';
 
-export const Input = styled.input(() => ({
+const Input = styled.input(() => ({
   appearance: 'none',
   background: '#ffffff',
   border: '0 none',
@@ -34,3 +34,5 @@ export const Input = styled.input(() => ({
     color: '#333333',
   }
 }));
+
+export default Input;

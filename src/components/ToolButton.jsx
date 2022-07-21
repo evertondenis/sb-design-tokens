@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 import { styled } from '@storybook/theming';
 
-export const ToolButton = ({ children, onClick }) => {
+const ToolButton = ({ children, onClick }) => {
   const Button = useMemo(
     () =>
       styled.button(({ theme }) => ({
@@ -34,3 +34,5 @@ export const ToolButton = ({ children, onClick }) => {
 
   return <Button onClick={onClick}>{children}</Button>;
 };
+
+export default ToolButton;

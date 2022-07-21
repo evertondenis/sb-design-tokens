@@ -1,6 +1,6 @@
 import { styled } from '@storybook/theming';
 
-export const Table = styled.table(() => ({
+const Table = styled.table(() => ({
     borderCollapse: 'collapse',
     borderSpacing: 0,
     minWidth: 700,
@@ -83,3 +83,5 @@ export const Table = styled.table(() => ({
       }
     }
 }));
+
+export default Table;
