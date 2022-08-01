@@ -1,6 +1,6 @@
 {
   "name": "@evertondenis/sb-design-tokens",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Storybook addon to extract component tokens and show.",
   "author": "Everton Denis",
   "license": "MIT",
@@ -49,13 +49,16 @@
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.2.5",
     "concurrently": "^7.2.2",
+    "glob-parent": "^6.0.2",
     "rimraf": "^3.0.2",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "trim": "^1.0.1",
+    "trim-newlines": "^4.0.2"
   },
   "peerDependencies": {
-    "react-dom": ">=17.0.2",
     "react": ">=17.0.2",
-    "styled-components": "^5.3.5",
-    "react-use-clipboard": "^1.0.8"
+    "react-dom": ">=17.0.2",
+    "react-use-clipboard": "^1.0.8",
+    "styled-components": "^5.3.5"
   }
 }
